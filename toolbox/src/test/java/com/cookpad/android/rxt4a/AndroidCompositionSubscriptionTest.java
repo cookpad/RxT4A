@@ -1,5 +1,7 @@
 package com.cookpad.android.rxt4a;
 
+import com.cookpad.android.rxt4a.subscriptions.AndroidCompositeSubscription;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
