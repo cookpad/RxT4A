@@ -1,5 +1,6 @@
 package com.cookpad.android.rxt4a.example;
 
+import com.cookpad.android.rxt4a.operators.OperatorAddToCompositeSubscription;
 import com.cookpad.android.rxt4a.schedulers.AndroidSchedulers;
 import com.cookpad.android.rxt4a.subscriptions.AndroidCompositeSubscription;
 
@@ -32,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        compositeSubscription.add(Observable.just("Hello, world!")
+        Observable.just("Hello, world!")
+                .lift(new OperatorAddToCompositeSubscription<String>(compositeSubscription))
                 .delay(5, TimeUnit.SECONDS)
                 .doOnUnsubscribe(new Action0() {
                     @Override
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                     public void call(String s) {
                         fire(s);
                     }
-                }));
+                });
     }
 
     @Override

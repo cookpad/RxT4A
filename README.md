@@ -24,6 +24,15 @@ s.add(subscription3);
 s.add(subscription4);
 
 s.unsubscribe(); // unsubscribe 3 and 4, too!
+
+// OperatorAddToCompositeSubscription
+
+Observable.just("foo")
+        .lift(new OperatorAddToCompositeSubscription<String>(s))
+        .delay(5, TimeUnit.MILLISECONDS)
+        .subscribe(...);
+
+s.unsubscribe(); // unsubscribe the above subscription
 ```
 
 
@@ -38,6 +47,10 @@ This is almost the same as RxAndroid's `AndroidSchedulers`.
 ## AndroidCompositeSubscription
 
 This is a variation of `CompositeSubscription` but can be reused multiple times.
+
+## OperatorAddToCompositeSubscription
+
+Add a subscription to `AndroidCompositeSubscription` in operator chains.
 
 # LICENSE
 

@@ -15,7 +15,7 @@ import rx.Observable;
 import rx.observers.TestSubscriber;
 
 @RunWith(RobolectricTestRunner.class)
-@Config(sdk = Build.VERSION_CODES.JELLY_BEAN)
+@Config(sdk = Build.VERSION_CODES.JELLY_BEAN, manifest = Config.NONE)
 public class AndroidCompositionSubscriptionTest {
 
     @Test

@@ -15,7 +15,7 @@ import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
 @RunWith(RobolectricTestRunner.class)
-@Config(sdk = Build.VERSION_CODES.JELLY_BEAN)
+@Config(sdk = Build.VERSION_CODES.JELLY_BEAN, manifest = Config.NONE)
 public class AndroidSchedulersTest {
 
     @Test

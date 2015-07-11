@@ -25,7 +25,7 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.mockito.Mockito.*;
 
 @RunWith(RobolectricTestRunner.class)
-@Config(sdk = Build.VERSION_CODES.JELLY_BEAN)
+@Config(sdk = Build.VERSION_CODES.JELLY_BEAN, manifest = Config.NONE)
 @SuppressWarnings("unchecked")
 public class HandlerSchedulerTest {
 
