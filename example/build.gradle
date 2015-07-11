@@ -5,7 +5,7 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "com.cookpad.android.rxt4a"
+        applicationId "com.cookpad.android.rxt4a.example"
         minSdkVersion 14
         targetSdkVersion 22
         versionCode 1
@@ -20,5 +20,6 @@ android {
 }
 
 dependencies {
+    compile project(':toolbox')
     compile 'com.android.support:appcompat-v7:22.2.0'
 }
