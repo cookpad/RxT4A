@@ -4,9 +4,15 @@ package com.cookpad.android.rxt4a;
 import com.cookpad.android.rxt4a.operators.OperatorFilterLite;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
+
+import android.os.Build;
 
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
 import rx.Observer;
@@ -16,10 +22,13 @@ import rx.observers.TestSubscriber;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 
+@RunWith(RobolectricTestRunner.class)
+@Config(sdk = Build.VERSION_CODES.JELLY_BEAN, manifest = Config.NONE)
+@SuppressWarnings("unchecked")
 public class OperatorFilterLiteTest {
 
     @Test
-    public void testFilter() {
+    public void testFilter() throws Exception {
         Observable<String> w = Observable.just("one", "two", "three");
         Observable<String> observable = w.lift(new OperatorFilterLite<String>() {
 
@@ -29,7 +38,6 @@ public class OperatorFilterLiteTest {
             }
         });
 
-        @SuppressWarnings("unchecked")
         Observer<String> observer = mock(Observer.class);
         observable.subscribe(observer);
         verify(observer, Mockito.never()).onNext("one");
@@ -39,11 +47,34 @@ public class OperatorFilterLiteTest {
         verify(observer, times(1)).onCompleted();
     }
 
+    static class TestException extends Exception {
+
+    }
+
+    @Test
+    public void testOnError() throws Exception {
+        Observable<String> w = Observable.error(new TestException());
+        Observable<String> observable = w.lift(new OperatorFilterLite<String>() {
+
+            @Override
+            public boolean test(String t1) {
+                return t1.equals("two");
+            }
+        });
+
+        TestSubscriber<String> ts = new TestSubscriber<>();
+        observable.subscribe(ts);
+
+        ts.awaitTerminalEvent(10, TimeUnit.MILLISECONDS);
+
+        ts.assertError(TestException.class);
+    }
+
     /**
      * Make sure we are adjusting subscriber.request() for filtered items
      */
     @Test(timeout = 500)
-    public void testWithBackpressure() throws InterruptedException {
+    public void testWithBackpressure() throws Exception {
         Observable<String> w = Observable.just("one", "two", "three");
         Observable<String> o = w.lift(new OperatorFilterLite<String>() {
 
@@ -85,7 +116,7 @@ public class OperatorFilterLiteTest {
      * Make sure we are adjusting subscriber.request() for filtered items
      */
     @Test(timeout = 500000)
-    public void testWithBackpressure2() throws InterruptedException {
+    public void testWithBackpressure2() throws Exception {
         Observable<Integer> w = Observable.range(1, RxRingBuffer.SIZE * 2);
         Observable<Integer> o = w.lift(new OperatorFilterLite<Integer>() {
 
@@ -100,20 +131,16 @@ public class OperatorFilterLiteTest {
 
             @Override
             public void onCompleted() {
-                System.out.println("onCompleted");
                 latch.countDown();
             }
 
             @Override
             public void onError(Throwable e) {
-                e.printStackTrace();
                 latch.countDown();
             }
 
             @Override
             public void onNext(Integer t) {
-                System.out.println("Received: " + t);
-                // request more each time we receive
                 request(1);
             }
         };
