@@ -1,0 +1,47 @@
+// forked from https://github.com/emilsjolander/IntentBuilder/blob/master/build.gradle
+
+final VERSION_FILE = project.file('version.properties')
+
+task bumpMajor << {
+    ant.propertyfile(file: VERSION_FILE) {
+        entry(key: 'major', type: 'int', operation: '+', value: 1)
+        entry(key: 'minor', type: 'int', operation: '=', value: 0)
+        entry(key: 'patch', type: 'int', operation: '=', value: 0)
+    }
+    tasks.version.execute()
+}
+
+task bumpMinor << {
+    ant.propertyfile(file: VERSION_FILE) {
+        entry(key: 'minor', type: 'int', operation: '+', value: 1)
+        entry(key: 'patch', type: 'int', operation: '=', value: 0)
+    }
+    tasks.version.execute()
+}
+
+task bumpPatch << {
+    ant.propertyfile(file: VERSION_FILE) {
+        entry(key: 'patch', type: 'int', operation: '+', value: 1)
+    }
+    tasks.version.execute()
+}
+
+task version << {
+    println "${versionName()} (${versionCode()})"
+}
+
+ext.versionName = {
+    def versionProps = getVersionProps()
+    return "${versionProps.major}.${versionProps.minor}.${versionProps.patch}"
+}
+
+ext.versionCode = {
+    def versionProps = getVersionProps()
+    return Integer.parseInt(versionProps.major) * 1_000_000 + Integer.parseInt(versionProps.minor) * 1_000 + Integer.parseInt(versionProps.patch)
+}
+
+ext.getVersionProps = {
+    def Properties versionProps = new Properties()
+    versionProps.load(new FileInputStream(VERSION_FILE))
+    return versionProps
+}

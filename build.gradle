@@ -12,3 +12,5 @@ allprojects {
         jcenter()
     }
 }
+
+apply from: file('./releng.gradle')
