@@ -12,7 +12,7 @@ import rx.Subscriber;
  * in operator chains.
  *
  * For example, when <code>s</code> is {@code AndroidCompositeSubscription} ,
- * <code>observable.lift(new OperatorAddToCompositeSubscription<String>(s)).subscribe(...)</code>
+ * <code>observable.lift(new OperatorAddToCompositeSubscription&lt;String&gt;(s)).subscribe(...)</code>
  * is the same as <code>s.add(observable.subscribe(...)</code>.
  */
 public class OperatorAddToCompositeSubscription<T> implements Observable.Operator<T, T> {

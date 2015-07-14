@@ -18,13 +18,18 @@ public class AndroidSchedulers {
 
     /**
      * A {@link Scheduler} which executes actions on the Android main thread (a.k.a. UI thread).
+     *
+     * @return The main thread scheduler
      */
     public static HandlerScheduler mainThread() {
         return MAIN_THREAD_SCHEDULER;
     }
 
     /**
-     * Creates a {@link Scheduler} to run tasks on {@param handler}.
+     * Creates a {@link Scheduler} to run tasks on {@code handler}.
+     *
+     * @param handler An Android handler to run tasks on
+     * @return A scheduler created from {@code handler}
      */
     public static HandlerScheduler from(@NonNull Handler handler) {
         return new HandlerScheduler(handler);
