@@ -2,6 +2,8 @@
 
 RxT4A - RxJava Toolbox for Android
 
+[ ![Download](https://api.bintray.com/packages/cookpad/maven/RxT4A/images/download.svg) ](https://bintray.com/cookpad/maven/RxT4A/_latestVersion)
+
 # SYNOPSIS
 
 ```java
@@ -51,6 +53,14 @@ This is a variation of `CompositeSubscription` but can be reused multiple times.
 ## OperatorAddToCompositeSubscription
 
 Add a subscription to `AndroidCompositeSubscription` in operator chains.
+
+# INSTALL
+
+```groovy
+dependencies {
+    compile 'com.cookpad.android.rxt4a:toolbox:0.9.0'
+}
+```
 
 # LICENSE
 
