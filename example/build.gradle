@@ -20,6 +20,6 @@ android {
 }
 
 dependencies {
-    compile project(':toolbox')
+    compile project(':rxt4a')
     compile 'com.android.support:appcompat-v7:22.2.0'
 }
