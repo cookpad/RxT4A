@@ -58,7 +58,7 @@ Add a subscription to `AndroidCompositeSubscription` in operator chains.
 
 ```groovy
 dependencies {
-    compile 'com.cookpad.android.rxt4a:toolbox:0.9.0'
+    compile 'com.cookpad.android.rxt4a:rxt4a:0.9.0'
 }
 ```
 

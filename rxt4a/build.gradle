@@ -42,7 +42,7 @@ dependencies {
 publish {
     userOrg = 'cookpad'
     groupId = 'com.cookpad.android.rxt4a'
-    artifactId = 'toolbox'
+    artifactId = 'rxt4a'
     version = project.rootProject.ext.versionName()
     description = 'RxJava Toolbox for Android'
     website = 'https://github.com/cookpad/RxT4A'
