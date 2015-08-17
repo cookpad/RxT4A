@@ -54,11 +54,27 @@ This is a variation of `CompositeSubscription` but can be reused multiple times.
 
 Add a subscription to `AndroidCompositeSubscription` in operator chains.
 
+## AndroidSubscriptions
+
+This class provides a way to create subscriptions for Android applications.
+
+```java
+Subscription subscription = observable.subscribe(subscriber);
+
+// Like Subscriptions.create(Action0), but the action is called on the main thread.
+subscription.add(AndroidSubscriptions.unsubscribeOnMainThread(new Action0() {
+    @Override
+    public void call() {
+        // You can touch touch views.
+    }
+}));
+```
+
 # INSTALL
 
 ```groovy
 dependencies {
-    compile 'com.cookpad.android.rxt4a:rxt4a:0.9.0'
+    compile 'com.cookpad.android.rxt4a:rxt4a:0.9.1'
 }
 ```
 
