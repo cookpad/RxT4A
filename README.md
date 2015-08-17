@@ -54,11 +54,24 @@ This is a variation of `CompositeSubscription` but can be reused multiple times.
 
 Add a subscription to `AndroidCompositeSubscription` in operator chains.
 
+## AndroidSubscriptions
+
+```java
+Subscription subscription = observable.subscribe(subscriber);
+
+subscription.add(AndroidSubscriptions.unsubscribeOnMainThread(new Action0() {
+    @Override
+    public void call() {
+        // touch views
+    }
+}));
+```
+
 # INSTALL
 
 ```groovy
 dependencies {
-    compile 'com.cookpad.android.rxt4a:rxt4a:0.9.0'
+    compile 'com.cookpad.android.rxt4a:rxt4a:0.9.1'
 }
 ```
 
