@@ -1,5 +1,7 @@
 package com.cookpad.android.rxt4a.subscriptions;
 
+import com.cookpad.android.rxt4a.schedulers.AndroidSchedulers;
+
 import android.os.Handler;
 import android.os.Looper;
 
@@ -24,7 +26,7 @@ public class AndroidSubscriptions {
                 if (Looper.getMainLooper() == Looper.myLooper()) {
                     unsubscribe.call();
                 } else {
-                    Handler handler = new Handler(Looper.getMainLooper());
+                    Handler handler = AndroidSchedulers.mainThread().getHandler();
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
