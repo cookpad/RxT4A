@@ -56,13 +56,16 @@ Add a subscription to `AndroidCompositeSubscription` in operator chains.
 
 ## AndroidSubscriptions
 
+This class provides a way to create subscriptions for Android applications.
+
 ```java
 Subscription subscription = observable.subscribe(subscriber);
 
+// Like Subscriptions.create(Action0), but the action is called on the main thread.
 subscription.add(AndroidSubscriptions.unsubscribeOnMainThread(new Action0() {
     @Override
     public void call() {
-        // touch views
+        // You can touch touch views.
     }
 }));
 ```
