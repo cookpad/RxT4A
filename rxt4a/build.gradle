@@ -44,8 +44,10 @@ publish {
     userOrg = 'cookpad'
     groupId = 'com.cookpad.android.rxt4a'
     artifactId = 'rxt4a'
-    version = project.rootProject.ext.versionName()
-    description = 'RxJava Toolbox for Android'
+    uploadName = 'RxT4A'
+    publishVersion = project.rootProject.ext.versionName()
+    desc = 'RxJava Toolbox for Android'
     website = 'https://github.com/cookpad/RxT4A'
-    licences = ['MIT']
+    repository = 'git@github.com:cookpad/RxT4A.git'
+    licences = [' MIT ']
 }
