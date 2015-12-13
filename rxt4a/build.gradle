@@ -3,7 +3,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.novoda:bintray-release:0.3.2'
+        classpath 'com.novoda:bintray-release:0.3.4'
     }
 }
 
@@ -12,26 +12,22 @@ apply plugin: 'com.novoda.bintray-release'
 
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 22
+        targetSdkVersion 23
         versionCode project.rootProject.versionCode()
         versionName project.rootProject.versionName()
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-
-    lintOptions {
-        disable 'GradleDynamicVersion'
-    }
 }
 
 dependencies {
-    compile 'io.reactivex:rxjava:1.0.14'
-    compile 'com.android.support:support-annotations:22.2.1'
+    compile 'io.reactivex:rxjava:1.1.0'
+    compile 'com.android.support:support-annotations:23.1.1'
 
     testCompile "org.robolectric:robolectric:3.0"
     testCompile 'junit:junit:4.12'
