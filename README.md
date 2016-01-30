@@ -74,7 +74,7 @@ subscription.add(AndroidSubscriptions.unsubscribeOnMainThread(new Action0() {
 
 ```groovy
 dependencies {
-    compile 'com.cookpad.android.rxt4a:rxt4a:0.10.0'
+    compile 'com.cookpad.android.rxt4a:rxt4a:1.0.0'
 }
 ```
 
