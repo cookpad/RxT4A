@@ -35,4 +35,22 @@ public class OperatorAddToCompositeSubscriptionTest {
         ts.awaitTerminalEvent(10, TimeUnit.MILLISECONDS);
         ts.assertNoTerminalEvent();
     }
+
+    @Test
+    public void testCreateOperator() throws Exception {
+        AndroidCompositeSubscription s = new AndroidCompositeSubscription();
+
+        TestSubscriber<String> ts = new TestSubscriber<>();
+
+        Observable.just("foo")
+                .lift(s.<String>createOperatorAddSubscription())
+                .delay(5, TimeUnit.MILLISECONDS)
+                .subscribe(ts);
+
+        s.unsubscribe();
+
+        ts.awaitTerminalEvent(10, TimeUnit.MILLISECONDS);
+        ts.assertNoTerminalEvent();
+    }
+
 }
